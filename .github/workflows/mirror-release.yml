@@ -1,0 +1,49 @@
+name: Mirror release from termina2
+on:
+  repository_dispatch:
+    types: [mirror-release]
+permissions:
+  contents: write
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variables
+        run: |
+          echo "TAG_NAME=${{ github.event.client_payload.tag_name }}" >> "$GITHUB_ENV"
+          echo "RELEASE_NAME=${{ github.event.client_payload.name }}" >> "$GITHUB_ENV"
+      - name: Normalize release name
+        run: |
+          if [ -z "$RELEASE_NAME" ]; then
+            echo "RELEASE_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+          fi
+      - name: Fetch release notes
+        run: |
+          gh api repos/terminaink/termina2/releases/tags/"$TAG_NAME" --jq .body > release-notes.md
+      - name: Download assets
+        run: |
+          mkdir -p assets
+          gh release download "$TAG_NAME" -R terminaink/termina2 --dir assets
+      - name: Create or update release
+        run: |
+          shopt -s nullglob
+          assets=(assets/*)
+          if gh release view "$TAG_NAME" -R terminaink/termina-releases >/dev/null 2>&1; then
+            gh release edit "$TAG_NAME" -R terminaink/termina-releases \
+              --title "$RELEASE_NAME" \
+              --notes-file release-notes.md
+            if [ ${#assets[@]} -gt 0 ]; then
+              gh release upload "$TAG_NAME" -R terminaink/termina-releases --clobber "${assets[@]}"
+            fi
+          else
+            if [ ${#assets[@]} -gt 0 ]; then
+              gh release create "$TAG_NAME" -R terminaink/termina-releases \
+                --title "$RELEASE_NAME" \
+                --notes-file release-notes.md \
+                "${assets[@]}"
+            else
+              gh release create "$TAG_NAME" -R terminaink/termina-releases \
+                --title "$RELEASE_NAME" \
+                --notes-file release-notes.md
+            fi
+          fi
