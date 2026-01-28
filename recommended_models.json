@@ -1,0 +1,26 @@
+[
+    {
+        "name": "gemma3:4b",
+        "description": "Latest Google model. High instruction following capability.",
+        "min_ram_gb": 4,
+        "size_gb": 2.6
+    },
+    {
+        "name": "llama3.2:3b",
+        "description": "Extremely efficient and fast. Best for laptops.",
+        "min_ram_gb": 4,
+        "size_gb": 2.0
+    },
+    {
+        "name": "phi3.5",
+        "description": "Microsoft's high-reasoning small model.",
+        "min_ram_gb": 4,
+        "size_gb": 2.3
+    },
+    {
+        "name": "mistral",
+        "description": "Solid all-rounder (7B).",
+        "min_ram_gb": 8,
+        "size_gb": 4.1
+    }
+]
