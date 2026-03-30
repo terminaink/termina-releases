@@ -1,0 +1,74 @@
+name: AI Quality Feedback
+description: Share feedback about Termina's AI writing assistance quality
+title: "[AI Feedback] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Termina's AI assistant is a core feature and we want it to be genuinely useful for your writing. Please share specific examples — the more context you provide, the better we can improve.
+
+  - type: dropdown
+    id: feature
+    attributes:
+      label: Which AI feature are you giving feedback on?
+      options:
+        - Continue Writing
+        - Rewrite Selection
+        - Character Chat (roleplay)
+        - AI-generated suggestions
+        - Research assistance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: What were you working on?
+      description: Briefly describe your project context (genre, scene type, what you were trying to accomplish).
+      placeholder: "Writing a fantasy battle scene, asked the AI to continue after the main character draws their sword..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What was the AI's response?
+      description: Paste or summarize the AI output you're giving feedback on.
+      placeholder: "The AI continued with a very generic fight sequence that ignored my character's established fighting style..."
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What would have been ideal?
+      description: How should the AI have responded differently?
+      placeholder: "It should have referenced the character's training background and used the specific weapons mentioned earlier..."
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Which AI provider were you using?
+      options:
+        - Claude (Anthropic)
+        - GPT (OpenAI)
+        - Gemini (Google)
+        - Ollama (local)
+        - OpenRouter
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model
+    attributes:
+      label: Specific model (if known)
+      options:
+        - Not sure
+        - Claude 3.5 Sonnet
+        - Claude 3 Opus
+        - GPT-4o
+        - GPT-4o mini
+        - Gemini 2.0
+        - Llama 3 (local)
+        - Other

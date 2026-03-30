@@ -1,0 +1,31 @@
+name: Q&A
+description: Ask questions about using Termina
+title: "[Question] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about how to use Termina? Ask away. Check existing discussions first — your question may already be answered.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Be as specific as possible for the best answer.
+      placeholder: "How do I export my manuscript to DOCX with custom formatting?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+      description: Let us know what you've attempted so we don't suggest things you've already done.
+      placeholder: "I looked in File > Export but only see the default options..."
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: "e.g. macOS 14.2, Windows 11, Ubuntu 22.04"

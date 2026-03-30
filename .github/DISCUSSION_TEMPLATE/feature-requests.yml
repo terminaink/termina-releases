@@ -1,0 +1,43 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Termina
+title: "[Feature] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We love hearing what would make Termina better for your writing. Describe the feature you'd like to see.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What's the writing pain point or workflow gap?
+      placeholder: "When I'm world-building, I want to link locations to characters so I can track who's where..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How do you imagine this feature working?
+      placeholder: "A location picker in the character editor that links to world entries..."
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you tried any workarounds or does another tool handle this well?
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this to you?
+      options:
+        - Nice to have
+        - Would use regularly
+        - Would make a big difference in my workflow
+        - Blocking — I need this to use Termina effectively
+    validations:
+      required: true
